@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Author = require('../models/author.model')
+const Author = require('../controllers/author.controller');
 
-router.post('/authors', (req, res, next) => {
-    console.log('holi')
-    Author.create(req.body)
-    .then((author) => res.status(201).json(author))
-    .catch((error) => next(error));}
-);
+router.post('/authors', Author.create );
+router.delete('/authors/:id', Author.delete);
+router.get('/authors', Author.list);
+router.put('/authors/:id', Author.edit)
 
 module.exports = router;
